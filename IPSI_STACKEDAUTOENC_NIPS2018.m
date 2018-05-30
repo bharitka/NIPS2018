@@ -36,5 +36,11 @@ w = [1; 2*ones(n/2-1,1); ones(1 - rem(n,2),1); zeros(n/2-1,1)];
 ipsi_filter = real(ifft(exp(fft(w'.*y(1:512)))));
 figure(1)
 plot(ipsi_filter)
-grd on
+grid on
+[Hips,Fa]=freqz(ipsi_filter,1,8192,48000);
+figure(2)
+semilogx(Fa,20*log10(abs(Hips)))
+axis([20 20000 -30 20])
+grid on
+
 end

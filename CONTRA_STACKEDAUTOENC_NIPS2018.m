@@ -46,7 +46,12 @@ p=[   5.20557027280039e-19
 ];
 itd_samples=round(polyval(p,angular_index)*48000);
 contra_filter_ITD=filter([zeros(max(itd_samples-1,1),1);1],1,contra_filter_minphase);
-figure(2)
-plot(contra_filter)
+figure(3)
+plot(contra_filter_ITD)
+grid on
+[Hcon,Fa]=freqz(contra_filter_ITD,1,8192,48000);
+figure(4)
+semilogx(Fa,20*log10(abs(Hcon)))
+axis([20 20000 -30 20])
 grid on
 end
